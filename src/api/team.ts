@@ -1,14 +1,15 @@
 import {instance} from "./api";
 import {getPage} from "../components/bll/local_storage/local_storage";
 
-export let number_of_pages = 8
+export let number_of_pages = getPage()
+
 export const team = {
     getTeam(page: number = 8) {
         number_of_pages = getPage()
         return instance.get(`users?page=${page}&count=${page}`);
     },
     getPaginator(page: number) {
-        return instance.get(`users?page=${page}&count=${8}`).then(res => res.data);
+        return instance.get(`users?page=${page}&count=${number_of_pages}`).then(res => res.data);
     }
 }
 export const validation = {
@@ -18,7 +19,7 @@ export const validation = {
     logout() {
         return instance.delete('/auth/login')
     },
-    authMe(){
+    authMe() {
         return instance.get('/auth/me')
     }
 }

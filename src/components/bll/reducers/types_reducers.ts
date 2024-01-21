@@ -10,6 +10,7 @@ export type InitialUserState = {
     error: string
     currentPage: number
     preloader: boolean
+    pageCount: number
 }
 export type Users = {
     name: string;
