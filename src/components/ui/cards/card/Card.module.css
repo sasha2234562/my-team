@@ -1,0 +1,39 @@
+.card {
+    display: flex;
+    padding: 36px 0 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px 0 rgba(51, 51, 51, 0.15);
+}
+
+.avatar {
+    width: 124px;
+    height: 124px;
+    border-radius: 999px;
+}
+
+.name {
+    color: #151317;
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.button {
+    border: none;
+}
+
+.icon {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.icon svg {
+    margin-right: 20px;
+    cursor: pointer;
+}

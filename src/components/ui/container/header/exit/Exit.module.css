@@ -1,0 +1,49 @@
+.exit {
+    position: absolute;
+    right: 80px;
+    top: 32px;
+    @media (max-width: 715px) {
+        border: none;
+        padding: 0;
+        right: 0;
+        top: 0;
+    }
+}
+
+.exit button {
+    border-radius: 8px;
+    border: 1px solid #F8F8F8;
+    color: #F8F8F8;
+    padding: 8px 16px;
+    background-color: rgba(248, 248, 248, 0);
+    cursor: pointer;
+    @media (max-width: 715px) {
+        border: none;
+        padding: 0;
+    }
+}
+
+.input {
+    border-radius: 8px;
+    background: #F8F8F8;
+    height: 48px;
+    width: 100%;
+}
+
+.icon {
+    display: none;
+    @media (max-width: 715px) {
+        display: block;
+    }
+}
+
+.title {
+    display: block;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    @media (max-width: 715px) {
+        display: none;
+    }
+}

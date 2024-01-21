@@ -1,0 +1,42 @@
+.input{
+    border: none;
+    border-radius: 8px;
+    background: #F8F8F8;
+    height: 48px;
+    min-width: 100%;
+    font-size: 20px;
+}
+.inputWrapper{
+    display: flex;
+    max-width: 100%;
+
+}
+.inputContainer{
+    width: 100%;
+    position: relative;
+}
+.icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    right: 34px;
+    top: 12px;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+}
+.text{
+    color: #151317;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 136%;
+}
+.error{
+    color: #ff0000;
+}
+.errorInput{
+    border: 1px solid #ff0000;
+}

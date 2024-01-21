@@ -1,0 +1,47 @@
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+.mkSpinnerWrap {
+    position: relative;
+    margin: 25%;
+    display: flex;
+    justify-content: center;
+}
+@-webkit-keyframes a {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+@keyframes a {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+.mkSpinnerPie {
+    content: "";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+    height: 210px;
+    z-index: 1;
+    background: transparent;
+    border-radius: 50%;
+    border: 25px solid;
+    border-color: #e70008 #ff41f6 #5f00d4 #861de9;
+    -webkit-animation: a 1s infinite linear;
+    animation: a 1s infinite linear
+}
