@@ -1,13 +1,13 @@
-import {useSelector} from "react-redux";
 import e from "./Error_Snackbar.module.css"
-import {AppStore} from "../../bll/reducers/store";
+import React from "react";
 
-export const ErrorSnackbar = () => {
+type Error = {
+    error: string
+}
 
-    const err = useSelector<AppStore, string | undefined>(store => store.login.email)
-
+export const ErrorSnackbar: React.FC<Error> = ({error}) => {
 
     return (
-        <span className={e.error}>{err}</span>
+        <span className={e.error}>{error}</span>
     );
 };

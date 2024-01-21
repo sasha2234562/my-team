@@ -1,8 +1,8 @@
-import {clearStorage} from "../local_storage/local_storage";
+import {clearStorage, getPage} from "../local_storage/local_storage";
 import {LoginValues, validation} from "../../../api/team";
 import {getTeam, preloader} from "./team_reducer";
 import {AxiosResponse} from "axios";
-import {AUTH, InitialState, LOGIN, LoginAction, LoginResponse, LOGOUT} from "./types_reducers";
+import {AUTH, ERROR, InitialState, LOGIN, LoginAction, LoginResponse, LOGOUT} from "./types_reducers";
 import {AppThunkDispatch} from "./store";
 import {handleServerNetworkError} from "../../../utils/handle_server_network_error";
 
@@ -11,7 +11,8 @@ const initialState: InitialState = {
     email: '',
     password: '',
     rememberMe: false,
-    isAuth: false
+    isAuth: false,
+    error: ''
 }
 
 export const loginReducer = (state: InitialState = initialState, action: LoginAction): InitialState => {
@@ -23,6 +24,8 @@ export const loginReducer = (state: InitialState = initialState, action: LoginAc
             return {...state, id: null, isAuth: false}
         case AUTH:
             return {...state, ...action.auth, isAuth: true}
+        case ERROR:
+            return {...state, error: action.error}
         default:
             return state
     }
@@ -31,13 +34,16 @@ export const loginReducer = (state: InitialState = initialState, action: LoginAc
 export const loginAction = (id: number) => ({type: LOGIN, id} as const)
 export const logOut = () => ({type: LOGOUT} as const)
 export const isAuth = (auth: AuthResponse) => ({type: AUTH, auth} as const)
-
+export const errorLogin = (error: string) => ({type: ERROR, error} as const)
 //thunks
 export const authMe = () => async (dispatch: AppThunkDispatch) => {
     try {
         const res = await validation.authMe()
-        dispatch(isAuth(res.data.data))
-        dispatch(getTeam())
+        if (res.data.resultCode === 0) {
+            dispatch(isAuth(res.data.data))
+            dispatch(getTeam(getPage()))
+        }
+        handleServerNetworkError(res.data.messages[0], dispatch)
     } catch (e) {
         return e
     }
@@ -45,15 +51,17 @@ export const authMe = () => async (dispatch: AppThunkDispatch) => {
 
 export const login = (values: LoginValues) => async (dispatch: AppThunkDispatch) => {
     try {
-        dispatch(preloader(true))
+        // dispatch(preloader(true))
         const res: AxiosResponse<LoginResponse> = await validation.login(values)
         if (res.data.resultCode === 0) {
             dispatch(loginAction(res.data.data.userId))
             dispatch(getTeam())
+            dispatch(preloader(false))
         }
+        dispatch(errorLogin(res.data.messages[0]))
         dispatch(preloader(false))
     } catch (e) {
-        handleServerNetworkError(e)
+        // handleServerNetworkError(e)
     }
 }
 

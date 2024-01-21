@@ -1,4 +1,6 @@
 import axios from "axios";
+import {AppThunkDispatch} from "../components/bll/reducers/store";
+import {errorLogin} from "../components/bll/reducers/login_reducer";
 
 /**
  * Обрабатывает ошибки сети, возникающие при отправке запросов на сервер
@@ -6,9 +8,9 @@ import axios from "axios";
  * @param {AppDispatch} dispatch - Функция dispatch из библиотеки Redux для отправки actions
  * @returns {void} - Данная функция ничего не возвращает
  */
-export const handleServerNetworkError = (err: unknown): void => {
+export const handleServerNetworkError = (err: unknown, dispatch: AppThunkDispatch): void => {
     // ❗Проверка на наличие axios ошибки
     if (axios.isAxiosError(err)) {
-        // dispatch(errorLogin(err.response?.data?.error))
+        dispatch(errorLogin(err.response?.data?.error))
     }
 };

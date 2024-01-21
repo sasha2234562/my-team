@@ -6,6 +6,7 @@ import {userCreator} from "../../../bll/reducers/user_reducer";
 import a from "../../../../assets/programmer-mascot-logo-design-vector-46471076 (1).jpg"
 import {Users} from "../../../bll/reducers/types_reducers";
 import {Icon} from "../../../../icon/Icon";
+import React from "react";
 
 export const Card = () => {
     const team = useSelector<AppStore, Users[]>(store => store.team.items)
@@ -28,7 +29,7 @@ export const Card = () => {
                 return (
                     <button className={c.button} key={i.id} onClick={(e) => userHandler(i, e)}>
                         <div className={c.card}>
-                            <img className={c.avatar} src={(!i.photos.large) ? a : i.photos.large} alt={'avatar'}/>
+                            <img className={c.avatar} src={(i.photos.large) ? i.photos.large : a} alt={'avatar'}/>
                             <h2 className={c.name}>{i.name}</h2>
                             <span className={c.icon} onClick={() => like(i.id, i.like)}>
                             <Icon IconId={'dislike'} height={'12'} width={'14'} viewBox={'0 0 16 14'}

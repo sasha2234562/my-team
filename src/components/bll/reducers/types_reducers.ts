@@ -1,7 +1,7 @@
 // userReducer types
 
 import {getMyTeam, liked, pagination, preloader} from "./team_reducer";
-import {isAuth, loginAction, logOut} from "./login_reducer";
+import {errorLogin, isAuth, loginAction, logOut} from "./login_reducer";
 import {back, userCreator} from "./user_reducer";
 
 export type InitialUserState = {
@@ -43,16 +43,19 @@ export type InitialState = {
     password: string
     rememberMe: boolean
     isAuth: boolean
+    error: string
 }
 
 export type LoginAction =
     ReturnType<typeof loginAction>
     | ReturnType<typeof logOut>
     | ReturnType<typeof isAuth>
+    | ReturnType<typeof errorLogin>
 
 export const LOGIN = "LOGIN"
 export const LOGOUT = "LOGOUT"
 export const AUTH = "AUTH"
+export const ERROR = "ERROR"
 
 export type LoginResponse = {
     data: {

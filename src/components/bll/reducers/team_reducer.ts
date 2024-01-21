@@ -9,7 +9,7 @@ const initialState: InitialUserState = {
     totalCount: 4,
     error: '',
     currentPage: 1,
-    preloader: false
+    preloader: false,
 }
 
 export const teamReducer = (state: InitialUserState = initialState, action: TeamActions): InitialUserState => {

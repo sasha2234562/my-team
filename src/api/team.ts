@@ -1,9 +1,10 @@
 import {instance} from "./api";
+import {getPage} from "../components/bll/local_storage/local_storage";
 
 export let number_of_pages = 8
 export const team = {
     getTeam(page: number = 8) {
-        number_of_pages = page
+        number_of_pages = getPage()
         return instance.get(`users?page=${page}&count=${page}`);
     },
     getPaginator(page: number) {

@@ -19,6 +19,7 @@ export const Content = () => {
     }
 
     if (!auth) return <Navigate to={'login'}/>
+
     return (
         <>
             <Header id={user.id}/>
