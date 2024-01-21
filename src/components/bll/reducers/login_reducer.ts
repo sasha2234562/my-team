@@ -1,8 +1,8 @@
 import {clearStorage, getPage} from "../local_storage/local_storage";
 import {LoginValues, validation} from "../../../api/team";
 import {getTeam, preloader} from "./team_reducer";
-import {AxiosResponse} from "axios";
-import {AUTH, ERROR, InitialState, LOGIN, LoginAction, LoginResponse, LOGOUT} from "./types_reducers";
+import {AxiosError, AxiosResponse} from "axios";
+import {AUTH, AuthResponse, ERROR, InitialState, LOGIN, LoginAction, LoginResponse, LOGOUT} from "./types_reducers";
 import {AppThunkDispatch} from "./store";
 import {handleServerNetworkError} from "../../../utils/handle_server_network_error";
 
@@ -31,10 +31,12 @@ export const loginReducer = (state: InitialState = initialState, action: LoginAc
     }
 }
 
+//actions
 export const loginAction = (id: number) => ({type: LOGIN, id} as const)
 export const logOut = () => ({type: LOGOUT} as const)
 export const isAuth = (auth: AuthResponse) => ({type: AUTH, auth} as const)
 export const errorLogin = (error: string) => ({type: ERROR, error} as const)
+
 //thunks
 export const authMe = () => async (dispatch: AppThunkDispatch) => {
     try {
@@ -43,15 +45,14 @@ export const authMe = () => async (dispatch: AppThunkDispatch) => {
             dispatch(isAuth(res.data.data))
             dispatch(getTeam(getPage()))
         }
-        handleServerNetworkError(res.data.messages[0], dispatch)
     } catch (e) {
-        return e
+        handleServerNetworkError(e, dispatch)
     }
 }
 
 export const login = (values: LoginValues) => async (dispatch: AppThunkDispatch) => {
     try {
-        // dispatch(preloader(true))
+        dispatch(preloader(true))
         const res: AxiosResponse<LoginResponse> = await validation.login(values)
         if (res.data.resultCode === 0) {
             dispatch(loginAction(res.data.data.userId))
@@ -60,8 +61,9 @@ export const login = (values: LoginValues) => async (dispatch: AppThunkDispatch)
         }
         dispatch(errorLogin(res.data.messages[0]))
         dispatch(preloader(false))
-    } catch (e) {
-        // handleServerNetworkError(e)
+    } catch (e: any) {
+        dispatch(preloader(false))
+        handleServerNetworkError(e, dispatch)
     }
 }
 
@@ -72,14 +74,8 @@ export const logOutMe = () => async (dispatch: AppThunkDispatch) => {
         if (res.data.resultCode === 0) {
             dispatch(logOut())
         }
-        dispatch(preloader(false))
     } catch (e) {
-        return
+        dispatch(preloader(false))
+        handleServerNetworkError(e, dispatch)
     }
-}
-
-export type AuthResponse = {
-    email: string
-    id: number | null
-    login: string
 }

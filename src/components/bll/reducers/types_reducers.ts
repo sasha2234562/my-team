@@ -1,5 +1,4 @@
-// userReducer types
-
+// userReducer
 import {getMyTeam, liked, pagination, preloader} from "./team_reducer";
 import {errorLogin, isAuth, loginAction, logOut} from "./login_reducer";
 import {back, userCreator} from "./user_reducer";
@@ -35,7 +34,7 @@ export const USERS = "USERS"
 export const PAGINATOR = "PAGINATOR"
 export const PRELOADER = "PRELOADER"
 
-// loginReducer types
+// loginReducer
 
 export type InitialState = {
     id: null | number
@@ -65,7 +64,13 @@ export type LoginResponse = {
     messages: string[]
 }
 
-// userReducer types
+export type AuthResponse = {
+    email: string
+    id: number | null
+    login: string
+}
+
+// userReducer
 
 export type InitialStateUser = {
     id: number | null,
@@ -76,3 +81,5 @@ export type InitialStateUser = {
     like: boolean
 }
 export type UserAction = ReturnType<typeof userCreator> | ReturnType<typeof back>
+
+export const USER = "USER"

@@ -40,6 +40,7 @@ export const Login = () => {
     });
 
     if (isAuth) return <Navigate to={'/'}/>
+
     return (
         <div className={l.container}>
             <div className={l.wrapper}>

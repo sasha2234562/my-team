@@ -45,11 +45,14 @@ export const teamReducer = (state: InitialUserState = initialState, action: Team
             return state
     }
 }
+
+//actions
 export const getMyTeam = (users: InitialUserState) => ({type: USERS, users} as const)
 export const liked = (likeId: number | null, like: boolean) => ({type: LIKE, likeId, like} as const)
 export const pagination = (users: InitialUserState, page: number) => ({type: PAGINATOR, users, page} as const)
 export const preloader = (preloader: boolean) => ({type: PRELOADER, preloader} as const)
 
+//thunks
 export const getTeam = (page?: number) => {
     return async (dispatch: AppThunkDispatch) => {
         dispatch(preloader(true))
@@ -62,6 +65,7 @@ export const getTeam = (page?: number) => {
         }
     };
 }
+
 export const getPaginator = (page: number) => async (dispatch: AppDispatch) => {
     try {
         dispatch(preloader(true))
