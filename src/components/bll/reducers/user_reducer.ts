@@ -1,4 +1,4 @@
-import {UserAction, Users} from "./types_reducers";
+import {USER, UserAction, Users} from "./types_reducers";
 
 const initialState: Users = {
     name: '',
@@ -16,15 +16,16 @@ const initialState: Users = {
 export const userReducer = (state: Users = initialState, action: UserAction): Users => {
     switch (action.type) {
         case USER:
+            console.log(action.user)
             return {...action.user}
         case "Back":
-        return {...state, id: null}
+            return {...state, id: null}
         default:
             return state
     }
 }
 
+
+//actions
 export const userCreator = (user: Users) => ({type: USER, user} as const)
 export const back = () => ({type: "Back"} as const)
-
-export const USER = "USER"

@@ -27,6 +27,7 @@ export const UserProfile = () => {
                 <div className={u.label}>
                     <h1 className={u.name}>{user.name}</h1>
                     <h2 className={u.post}>Партнёр</h2>
+                    <h2 className={u.post}>{user.status ? `Статус: ${user.status}` : null}</h2>
                 </div>
             </div>
             <Exit/>
