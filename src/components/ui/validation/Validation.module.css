@@ -65,4 +65,5 @@
 .remember input{
     width: 30px;
     accent-color: lime;
+    border-radius: 10px;
 }

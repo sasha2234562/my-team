@@ -19,7 +19,6 @@ export const teamReducer = (state: InitialUserState = initialState, action: Team
             return {
                 ...state,
                 totalCount: action.users.totalCount,
-                pageCount: action.page || 8,
                 items: action.users.items.map(i => ({
                     ...i,
                     like: !!getLike(i.id)
@@ -57,11 +56,11 @@ export const pagination = (users: InitialUserState, page: number) => ({type: PAG
 export const preloader = (preloader: boolean) => ({type: PRELOADER, preloader} as const)
 
 //thunks
-export const getTeam = (page?: number) => {
+export const getTeam = (page?: number, pageCount?: number) => {
     return async (dispatch: AppThunkDispatch) => {
         dispatch(preloader(true))
         try {
-            const res = await team.getTeam(page)
+            const res = await team.getTeam(page, pageCount)
             dispatch(getMyTeam(res.data, page))
             dispatch(preloader(false))
         } catch (e: any) {

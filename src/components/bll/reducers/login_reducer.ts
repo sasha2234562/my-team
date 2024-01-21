@@ -43,7 +43,7 @@ export const authMe = () => async (dispatch: AppThunkDispatch) => {
         const res = await validation.authMe()
         if (res.data.resultCode === 0) {
             dispatch(isAuth(res.data.data))
-            dispatch(getTeam(getPage()))
+            dispatch(getTeam())
         }
     } catch (e) {
         handleServerNetworkError(e, dispatch)
@@ -71,9 +71,8 @@ export const logOutMe = () => async (dispatch: AppThunkDispatch) => {
     try {
         dispatch(preloader(true))
         const res: AxiosResponse<LoginResponse> = await validation.logout()
-        if (res.data.resultCode === 0) {
-            dispatch(logOut())
-        }
+        dispatch(logOut())
+        dispatch(preloader(false))
     } catch (e) {
         dispatch(preloader(false))
         handleServerNetworkError(e, dispatch)

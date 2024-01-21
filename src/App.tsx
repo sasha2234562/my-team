@@ -8,14 +8,14 @@ import {authMe} from "./components/bll/reducers/login_reducer";
 import {Preloader} from "./components/ui/prelouder/Prelouder";
 import Router from "./router/Router";
 import {setPage} from "./components/bll/local_storage/local_storage";
+import {InitialUserState} from "./components/bll/reducers/types_reducers";
 
 
 function App() {
 
     const dispatch = useAppDispatch()
     const [cardCount, setCardCount] = useState(0);
-    const prelouder = useSelector<AppStore, boolean>(state => state.team.preloader)
-    const login = useSelector<AppStore, boolean>(state => state.login.isAuth)
+    const {preloader, currentPage} = useSelector<AppStore, InitialUserState>(state => state.team)
 
     function updateCard() {
         updateCardCount(cardCount, setCardCount)
@@ -24,15 +24,15 @@ function App() {
     useEffect(() => {
         switch (cardCount) {
             case 4:
-                dispatch(getTeam(4))
+                dispatch(getTeam(currentPage, 4))
                 setPage(4)
                 break
             case 6:
-                dispatch(getTeam(6))
+                dispatch(getTeam(currentPage, 6))
                 setPage(6)
                 break
             case 8:
-                dispatch(getTeam(8))
+                dispatch(getTeam(currentPage, 8))
                 setPage(8)
                 break
         }
@@ -51,7 +51,7 @@ function App() {
 
     return (
         < div className={"app"}>
-            {prelouder ? <Preloader/> : <Router/>}
+            {preloader ? <Preloader/> : <Router/>}
         </div>
     )
 }
