@@ -3,4 +3,4 @@ export const getLike = (likeId: number | null) => JSON.parse(localStorage.getIte
 export const clearStorage = () => localStorage.clear()
 
 export const setPage = (page: number) => localStorage.setItem("page", `${page}`)
-export const getPage = () => JSON.parse(localStorage.getItem("page") || "0")
+export const getPage = () => JSON.parse(localStorage.getItem("page") || "8")
