@@ -1,53 +1,27 @@
 import './App.css'
-import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import {AppStore, useAppDispatch} from "./components/bll/reducers/store";
-import {updateCardCount} from "./screen_width/screen_width_control";
+import {useEffect} from "react";
+import {useAppDispatch} from "./components/bll/reducers/store";
 import {getTeam} from "./components/bll/reducers/team_reducer";
-import {authMe} from "./components/bll/reducers/login_reducer";
 import {Preloader} from "./components/ui/prelouder/Prelouder";
-import Router from "./router/Router";
-import {setPage} from "./components/bll/local_storage/local_storage";
-import {InitialUserState} from "./components/bll/reducers/types_reducers";
+import {Router} from "./router/Router";
+import {authMe} from "./components/bll/reducers/login_reducer";
+import {useAppSelector} from "./components/bll/reducers/hook";
+import {isAuthSelector} from "./components/bll/reducers/selectors/login_selector";
+import {currentPageSelector, preloaderSelector} from "./components/bll/reducers/selectors/team_selector";
 
 
 function App() {
-
     const dispatch = useAppDispatch()
-    const [cardCount, setCardCount] = useState(0);
-    const {preloader, currentPage} = useSelector<AppStore, InitialUserState>(state => state.team)
-
-    function updateCard() {
-        updateCardCount(cardCount, setCardCount)
-    }
+    const currentPage = useAppSelector(currentPageSelector)
+    const preloader = useAppSelector(preloaderSelector)
+    const isAuth = useAppSelector(isAuthSelector)
 
     useEffect(() => {
-        switch (cardCount) {
-            case 4:
-                dispatch(getTeam(currentPage, 4))
-                setPage(4)
-                break
-            case 6:
-                dispatch(getTeam(currentPage, 6))
-                setPage(6)
-                break
-            case 8:
-                dispatch(getTeam(currentPage, 8))
-                setPage(8)
-                break
+        dispatch(authMe());
+        if(isAuth){
+            dispatch(getTeam(currentPage, 8))
         }
-    }, [cardCount]);
-
-    useEffect(() => {
-        dispatch(authMe())
-        // Обработчик изменения размера экрана будет вызываться при изменении ширины окна
-        window.addEventListener('resize', updateCard);
-
-        // Очистка обработчика при размонтировании компонента
-        return () => {
-            window.removeEventListener('resize', updateCard);
-        };
-    }, []);
+    }, [isAuth]);
 
     return (
         < div className={"app"}>

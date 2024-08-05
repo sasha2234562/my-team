@@ -8,10 +8,18 @@
     box-shadow: 0 1px 4px 0 rgba(51, 51, 51, 0.15);
 }
 
+.avatar_wrapper{
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 .avatar {
     width: 124px;
     height: 124px;
-    border-radius: 999px;
+    border-radius: 50%;
 }
 
 .name {

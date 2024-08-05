@@ -1,6 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import {Content} from "../components/ui/container/content/Content";
 import {Login} from "../components/ui/validation/Login";
+import {LOGIN, MAIN} from "./path";
 
 
 export const Router = () => {
@@ -11,5 +12,3 @@ export const Router = () => {
         </Routes>
     );
 };
-
-export default Router;

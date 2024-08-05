@@ -1,8 +1,15 @@
 .cards {
-    margin: 48px 0;
+    padding: 20px 0;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 304px);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    -webkit-box-pack: center;
     justify-content: center;
     gap: 20px;
+}
+
+@media (max-width: 1440px) {
+    .cards {
+        padding: 20px;
+    }
 }

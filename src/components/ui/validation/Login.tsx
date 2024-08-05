@@ -1,12 +1,12 @@
 import l from './Validation.module.css';
 import {Navigate} from "react-router-dom";
 import {useFormik} from "formik";
-import {useSelector} from "react-redux";
-import {AppStore, useAppDispatch} from "../../bll/reducers/store";
+import {useAppDispatch} from "../../bll/reducers/store";
 import {login} from "../../bll/reducers/login_reducer";
 import {Input} from "../input/Input";
 import {ErrorSnackbar} from "../error_snackbar/Error_Snackbar";
-import {InitialState} from "../../bll/reducers/types_reducers";
+import {useAppSelector} from "../../bll/reducers/hook";
+import {errorSelector, isAuthSelector} from "../../bll/reducers/selectors/login_selector";
 
 type FormikError = {
     email?: string;
@@ -14,7 +14,8 @@ type FormikError = {
     password_repeat?: string;
 };
 export const Login = () => {
-    const {isAuth, error} = useSelector<AppStore, InitialState>(state => state.login)
+    const isAuth = useAppSelector(isAuthSelector)
+    const error = useAppSelector(errorSelector)
 
     const dispatch = useAppDispatch()
 

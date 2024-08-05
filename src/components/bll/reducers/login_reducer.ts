@@ -43,7 +43,6 @@ export const authMe = () => async (dispatch: AppThunkDispatch) => {
         const res = await validation.authMe()
         if (res.data.resultCode === 0) {
             dispatch(isAuth(res.data.data))
-            dispatch(getTeam())
         }
     } catch (e) {
         handleServerNetworkError(e, dispatch)
