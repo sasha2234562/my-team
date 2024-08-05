@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/my-team/static/css/main.0697433d.css",
-    "main.js": "/my-team/static/js/main.753f5a43.js",
+    "main.css": "/my-team/static/css/main.ceef179f.css",
+    "main.js": "/my-team/static/js/main.2d17eccf.js",
     "static/js/787.b34ce9d2.chunk.js": "/my-team/static/js/787.b34ce9d2.chunk.js",
     "static/media/programmer-mascot-logo-design-vector-46471076 (1).jpg": "/my-team/static/media/programmer-mascot-logo-design-vector-46471076 (1).eca80dc1c223ed3d788a.jpg",
     "static/media/icon.svg": "/my-team/static/media/icon.9e58232fdd38cc1ab2152985add67b48.svg",
     "index.html": "/my-team/index.html",
-    "main.0697433d.css.map": "/my-team/static/css/main.0697433d.css.map",
-    "main.753f5a43.js.map": "/my-team/static/js/main.753f5a43.js.map",
+    "main.ceef179f.css.map": "/my-team/static/css/main.ceef179f.css.map",
+    "main.2d17eccf.js.map": "/my-team/static/js/main.2d17eccf.js.map",
     "787.b34ce9d2.chunk.js.map": "/my-team/static/js/787.b34ce9d2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0697433d.css",
-    "static/js/main.753f5a43.js"
+    "static/css/main.ceef179f.css",
+    "static/js/main.2d17eccf.js"
   ]
 }
