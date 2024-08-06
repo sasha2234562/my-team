@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/my-team/static/css/main.ceef179f.css",
-    "main.js": "/my-team/static/js/main.2d17eccf.js",
+    "main.js": "/my-team/static/js/main.927bff42.js",
     "static/js/787.b34ce9d2.chunk.js": "/my-team/static/js/787.b34ce9d2.chunk.js",
     "static/media/programmer-mascot-logo-design-vector-46471076 (1).jpg": "/my-team/static/media/programmer-mascot-logo-design-vector-46471076 (1).eca80dc1c223ed3d788a.jpg",
     "static/media/icon.svg": "/my-team/static/media/icon.9e58232fdd38cc1ab2152985add67b48.svg",
     "index.html": "/my-team/index.html",
     "main.ceef179f.css.map": "/my-team/static/css/main.ceef179f.css.map",
-    "main.2d17eccf.js.map": "/my-team/static/js/main.2d17eccf.js.map",
+    "main.927bff42.js.map": "/my-team/static/js/main.927bff42.js.map",
     "787.b34ce9d2.chunk.js.map": "/my-team/static/js/787.b34ce9d2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ceef179f.css",
-    "static/js/main.2d17eccf.js"
+    "static/js/main.927bff42.js"
   ]
 }
